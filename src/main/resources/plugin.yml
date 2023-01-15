@@ -1,0 +1,4 @@
+name: Project M
+version: '${project.version}'
+main: hsl.matfox.Main
+api-version: 1.19
