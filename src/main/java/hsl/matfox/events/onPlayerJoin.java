@@ -57,7 +57,7 @@ public final class onPlayerJoin implements Listener {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("Espada de Diamante Mágica");
         List<String> lore = new ArrayList<String>();
-        lore.add("Espada mágica com poder de fogo");
+        lore.add("Espada mágica com poder de fogo!");
         meta.setLore(lore);
         item.setItemMeta(meta);
         player.getInventory().clear();
