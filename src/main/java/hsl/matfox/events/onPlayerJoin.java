@@ -73,7 +73,6 @@ public final class onPlayerJoin implements Listener {
 
         inventory.setItem(4, pinkglass);
         inventory.setItem(12, pinkglass);
-        inventory.setItem(13, pinkglass);
         inventory.setItem(14, pinkglass);
         inventory.setItem(20, pinkglass);
         inventory.setItem(21, pinkglass);
@@ -81,6 +80,7 @@ public final class onPlayerJoin implements Listener {
         inventory.setItem(23, pinkglass);
         inventory.setItem(24, pinkglass);
         inventory.setItem(30, pinkglass);
+        inventory.setItem(31, pinkglass);
         inventory.setItem(32, pinkglass);
     }
 }

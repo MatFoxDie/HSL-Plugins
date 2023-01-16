@@ -1,6 +1,7 @@
 package hsl.matfox;
 
 import hsl.matfox.commands.hslReloadCommand;
+import hsl.matfox.events.onInventoryClick;
 import hsl.matfox.events.onPlayerDamage;
 import hsl.matfox.events.onPlayerDropItem;
 import hsl.matfox.events.onPlayerJoin;
@@ -19,6 +20,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onPlayerJoin(),this);
         getServer().getPluginManager().registerEvents(new onPlayerDamage(),this);
         getServer().getPluginManager().registerEvents(new onPlayerDropItem(), this);
+        getServer().getPluginManager().registerEvents(new onInventoryClick(), this);
 
         //commands
         this.getCommand("hslReload").setExecutor(new hslReloadCommand());
