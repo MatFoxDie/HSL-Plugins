@@ -1,5 +1,7 @@
 package hsl.matfox;
 
+import hsl.matfox.commands.hslReloadCommand;
+import hsl.matfox.events.onPlayerDamage;
 import hsl.matfox.events.onPlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

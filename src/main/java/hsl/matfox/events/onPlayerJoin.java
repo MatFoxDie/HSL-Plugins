@@ -48,9 +48,10 @@ public final class onPlayerJoin implements Listener {
 
         player.teleport(spawnLocation);
 
-
         System.out.println("Teleportado");
         setInventory(player);
+
+        HSL(player);
     }
     public void setInventory(Player player) {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
@@ -62,5 +63,24 @@ public final class onPlayerJoin implements Listener {
         item.setItemMeta(meta);
         player.getInventory().clear();
         player.getInventory().setItem(10, item);
+    }
+
+    public void HSL(Player player) {
+
+        Inventory inventory = player.getInventory();
+
+        ItemStack pinkglass = new ItemStack(Material.PINK_STAINED_GLASS_PANE, 1);
+
+        inventory.setItem(4, pinkglass);
+        inventory.setItem(12, pinkglass);
+        inventory.setItem(13, pinkglass);
+        inventory.setItem(14, pinkglass);
+        inventory.setItem(20, pinkglass);
+        inventory.setItem(21, pinkglass);
+        inventory.setItem(22, pinkglass);
+        inventory.setItem(23, pinkglass);
+        inventory.setItem(24, pinkglass);
+        inventory.setItem(30, pinkglass);
+        inventory.setItem(32, pinkglass);
     }
 }
