@@ -11,6 +11,5 @@ public final class onPlayerDamage implements Listener {
         if (event.getEntity() instanceof Player) {
             event.setCancelled(true);
         }
-
     }
 }
