@@ -2,8 +2,3 @@ name: Project_M
 version: '${project.version}'
 main: hsl.matfox.Main
 api-version: 1.19
-spawn-location:
-  world: world
-  x: 10
-  y: 60
-  z: 10
