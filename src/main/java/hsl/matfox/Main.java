@@ -10,9 +10,14 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        //loadConfig
         this.saveDefaultConfig();
+        //events
         getServer().getPluginManager().registerEvents(new onPlayerJoin(),this);
-        System.out.println("Ok");
+        getServer().getPluginManager().registerEvents(new onPlayerDamage(),this);
+
+        //commands
+        this.getCommand("hslReload").setExecutor(new hslReloadCommand());
     }
 
     @Override

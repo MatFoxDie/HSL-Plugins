@@ -2,3 +2,8 @@ name: Project_M
 version: '${project.version}'
 main: hsl.matfox.Main
 api-version: 1.19
+commands:
+  hslReload:
+    description: Reload hsl Plugin
+    usage: /<command>
+    permission: hsl.reload

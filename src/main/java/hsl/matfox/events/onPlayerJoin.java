@@ -48,6 +48,7 @@ public final class onPlayerJoin implements Listener {
 
         player.teleport(spawnLocation);
 
+
         System.out.println("Teleportado");
         setInventory(player);
     }
@@ -60,6 +61,6 @@ public final class onPlayerJoin implements Listener {
         meta.setLore(lore);
         item.setItemMeta(meta);
         player.getInventory().clear();
-        player.getInventory().setItem(0, item);
+        player.getInventory().setItem(10, item);
     }
 }
