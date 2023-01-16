@@ -1,10 +1,7 @@
 package hsl.matfox;
 
 import hsl.matfox.commands.hslReloadCommand;
-import hsl.matfox.events.onInventoryClick;
-import hsl.matfox.events.onPlayerDamage;
-import hsl.matfox.events.onPlayerDropItem;
-import hsl.matfox.events.onPlayerJoin;
+import hsl.matfox.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +18,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onPlayerDamage(),this);
         getServer().getPluginManager().registerEvents(new onPlayerDropItem(), this);
         getServer().getPluginManager().registerEvents(new onInventoryClick(), this);
+        getServer().getPluginManager().registerEvents(new onPlayerMessage(), this);
 
         //commands
         this.getCommand("hslReload").setExecutor(new hslReloadCommand());

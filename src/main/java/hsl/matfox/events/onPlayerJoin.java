@@ -1,15 +1,9 @@
 package hsl.matfox.events;
 
-import com.google.inject.Inject;
-import hsl.matfox.utils.ConfigurationManager;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.*;
 import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,17 +12,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.io.Console;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import hsl.matfox.Main;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
+
+
 
 public final class onPlayerJoin implements Listener {
-
+    private boolean isFirstJoin;
     Plugin plugin = Main.getPlugin(Main.class);
 
     @EventHandler
@@ -52,6 +44,17 @@ public final class onPlayerJoin implements Listener {
         setInventory(player);
 
         HSL(player);
+
+        if(!player.hasPlayedBefore()){
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
+                    '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())
+            ));
+        } else {
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
+                    '&', "&6&lVocê voltou!" + "&f&l "+player.getDisplayName())
+            ));
+        }
+
     }
     public void setInventory(Player player) {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
@@ -61,8 +64,16 @@ public final class onPlayerJoin implements Listener {
         lore.add("Espada mágica com poder de fogo!");
         meta.setLore(lore);
         item.setItemMeta(meta);
+
+        ItemStack showPlayers = new ItemStack(Material.GRAY_DYE);
+        ItemMeta showPlayersmeta = showPlayers.getItemMeta();
+        showPlayersmeta.setDisplayName("Mostrar jogadores");
+        showPlayers.setItemMeta(showPlayersmeta);
+
         player.getInventory().clear();
-        player.getInventory().setItem(10, item);
+        player.getInventory().setItem(0, item);
+        player.getInventory().setItem(7, showPlayers);
+
     }
 
     public void HSL(Player player) {
@@ -70,6 +81,12 @@ public final class onPlayerJoin implements Listener {
         Inventory inventory = player.getInventory();
 
         ItemStack pinkglass = new ItemStack(Material.PINK_STAINED_GLASS_PANE, 1);
+        ItemMeta meta = pinkglass.getItemMeta();
+        meta.setDisplayName("♥");
+        List<String> lore = new ArrayList<String>();
+        lore.add("Happy Suggar Craft!");
+        meta.setLore(lore);
+        pinkglass.setItemMeta(meta);
 
         inventory.setItem(4, pinkglass);
         inventory.setItem(12, pinkglass);
