@@ -1,5 +1,7 @@
 package hsl.matfox.events;
 
+import hsl.matfox.models.Adventurer;
+import hsl.matfox.models.Attributes;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -21,30 +23,46 @@ import org.bukkit.plugin.Plugin;
 
 public final class onPlayerJoin implements Listener {
     private boolean isFirstJoin;
+    Adventurer a;
     Plugin plugin = Main.getPlugin(Main.class);
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
+        Attributes at = new Attributes();
+
+        at.setDmg(1);
+        at.setDef(1);
+        at.setLife(1);
+
+        Adventurer a= new Adventurer(event.getPlayer(), at);
+
+        Adventurer b =  Adventurer.getAdventurer(event.getPlayer().getName());
+
+        event.getPlayer().setHealthScale(b.getAttributes().getLife());
+
+        System.out.println(b.getName());
+        System.out.println(b.getAttributes().getLife());
+
         String configValue = this.plugin.getConfig().getString("SomeCoolValue");
 
         Configuration config = plugin.getConfig();
-
         String worldName = config.getString("spawn-location.world");
         double x = config.getDouble("spawn-location.x");
         double y = config.getDouble("spawn-location.y");
         double z = config.getDouble("spawn-location.z");
         World world = Bukkit.getWorld(worldName);
         Location spawnLocation = new Location(world, x, y, z);
-
+        System.out.println("teste3");
         Player player = event.getPlayer();
 
         player.teleport(spawnLocation);
 
         System.out.println("Teleportado");
+
         setInventory(player);
-
+        System.out.println("teste2");
         HSL(player);
-
+        System.out.println("teste1");
         if(!player.hasPlayedBefore()){
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
                     '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())
@@ -54,7 +72,7 @@ public final class onPlayerJoin implements Listener {
                     '&', "&6&lVocê voltou!" + "&f&l "+player.getDisplayName())
             ));
         }
-
+        System.out.println("teste1");
     }
     public void setInventory(Player player) {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
