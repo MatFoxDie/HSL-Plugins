@@ -3,11 +3,14 @@ package hsl.matfox;
 import hsl.matfox.commands.hslReloadCommand;
 import hsl.matfox.events.*;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.List;
 
 public final class Main extends JavaPlugin {
+
 
     @Override
     public void onEnable() {
@@ -22,6 +25,9 @@ public final class Main extends JavaPlugin {
 
         //commands
         this.getCommand("hslReload").setExecutor(new hslReloadCommand());
+
+
+
     }
 
     @Override

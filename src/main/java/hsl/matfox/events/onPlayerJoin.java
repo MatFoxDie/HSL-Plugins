@@ -6,6 +6,7 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +15,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import hsl.matfox.Main;
@@ -22,6 +25,9 @@ import org.bukkit.plugin.Plugin;
 
 
 public final class onPlayerJoin implements Listener {
+    FileConfiguration data;
+    File permFile;
+    File statusFile;
     private boolean isFirstJoin;
     Adventurer a;
     Plugin plugin = Main.getPlugin(Main.class);
@@ -44,6 +50,25 @@ public final class onPlayerJoin implements Listener {
         System.out.println(b.getAttributes().getLife());
 
         String configValue = this.plugin.getConfig().getString("SomeCoolValue");
+
+        permFile = new File(plugin.getDataFolder(), "permissions.yml");
+        if (!permFile.exists()) {
+            try {
+                permFile.createNewFile();
+            }
+            catch (IOException e) {
+                Bukkit.getServer().getLogger().severe(ChatColor.RED + "Could not create permissions.yml!");
+            }
+        }
+        statusFile = new File(plugin.getDataFolder(), "status.yml");
+        if (!statusFile.exists()) {
+            try {
+                statusFile.createNewFile();
+            }
+            catch (IOException e) {
+                Bukkit.getServer().getLogger().severe(ChatColor.RED + "Could not create status.yml!");
+            }
+        }
 
         Configuration config = plugin.getConfig();
         String worldName = config.getString("spawn-location.world");
