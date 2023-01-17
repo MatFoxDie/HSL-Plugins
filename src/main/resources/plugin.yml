@@ -8,3 +8,7 @@ commands:
     description: Reload hsl Plugin
     usage: /<command>
     permission: hsl.reload
+  feedCommand:
+    description: Feed user
+    usage: /<command>
+    permission: hsl.feed

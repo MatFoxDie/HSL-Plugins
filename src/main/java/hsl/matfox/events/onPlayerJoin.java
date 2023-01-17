@@ -6,7 +6,6 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,32 +14,25 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import hsl.matfox.Main;
 import org.bukkit.plugin.Plugin;
 
 
-
 public final class onPlayerJoin implements Listener {
-    FileConfiguration data;
-    File permFile;
-    File statusFile;
-    private boolean isFirstJoin;
-    Adventurer a;
     Plugin plugin = Main.getPlugin(Main.class);
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
+
         Attributes at = new Attributes();
 
         at.setDmg(1);
         at.setDef(1);
         at.setLife(1);
 
-        Adventurer a= new Adventurer(event.getPlayer(), at);
+        new Adventurer(event.getPlayer(), at);
 
         Adventurer b =  Adventurer.getAdventurer(event.getPlayer().getName());
 
@@ -49,45 +41,15 @@ public final class onPlayerJoin implements Listener {
         System.out.println(b.getName());
         System.out.println(b.getAttributes().getLife());
 
-        String configValue = this.plugin.getConfig().getString("SomeCoolValue");
 
-        permFile = new File(plugin.getDataFolder(), "permissions.yml");
-        if (!permFile.exists()) {
-            try {
-                permFile.createNewFile();
-            }
-            catch (IOException e) {
-                Bukkit.getServer().getLogger().severe(ChatColor.RED + "Could not create permissions.yml!");
-            }
-        }
-        statusFile = new File(plugin.getDataFolder(), "status.yml");
-        if (!statusFile.exists()) {
-            try {
-                statusFile.createNewFile();
-            }
-            catch (IOException e) {
-                Bukkit.getServer().getLogger().severe(ChatColor.RED + "Could not create status.yml!");
-            }
-        }
-
-        Configuration config = plugin.getConfig();
-        String worldName = config.getString("spawn-location.world");
-        double x = config.getDouble("spawn-location.x");
-        double y = config.getDouble("spawn-location.y");
-        double z = config.getDouble("spawn-location.z");
-        World world = Bukkit.getWorld(worldName);
-        Location spawnLocation = new Location(world, x, y, z);
-        System.out.println("teste3");
+        Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
 
         player.teleport(spawnLocation);
 
-        System.out.println("Teleportado");
-
         setInventory(player);
-        System.out.println("teste2");
         HSL(player);
-        System.out.println("teste1");
+
         if(!player.hasPlayedBefore()){
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
                     '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())
@@ -142,5 +104,15 @@ public final class onPlayerJoin implements Listener {
         inventory.setItem(30, pinkglass);
         inventory.setItem(31, pinkglass);
         inventory.setItem(32, pinkglass);
+    }
+    public Location loadSpawn() {
+        Configuration config = plugin.getConfig();
+        String worldName = config.getString("spawn-location.world");
+        double x = config.getDouble("spawn-location.x");
+        double y = config.getDouble("spawn-location.y");
+        double z = config.getDouble("spawn-location.z");
+        World world = Bukkit.getWorld(worldName);
+        Location spawnLocation = new Location(world, x, y, z);
+        return spawnLocation;
     }
 }
