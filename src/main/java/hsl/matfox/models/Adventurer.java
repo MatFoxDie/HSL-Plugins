@@ -6,15 +6,22 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class Adventurer {
+    private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
+
     private String name;
     private UUID uuid;
     private Attributes attributes;
+
+    public Adventurer() {
+    }
+
     public Adventurer(Player player, Attributes attributes) {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
         this.attributes =  attributes;
         adventurers.put(uuid, this);
     }
+
     public String getName() {
         return name;
     }
@@ -22,23 +29,22 @@ public class Adventurer {
     public UUID getUuid() {
         return uuid;
     }
+
     public Attributes getAttributes() {
         return attributes;
     }
-    private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
 
-    public static Adventurer getAdventurer(Player p) {
+    public static Adventurer getAdventurerByPlayer(Player p) {
         Adventurer a = adventurers.get(p.getUniqueId());
         return a != null ? a : new Adventurer(p, a.attributes);
     }
 
-    @Deprecated
-    public static Adventurer getAdventurer(String name) {
-        for (Adventurer a : adventurers.values())
-            if (a.getName().equalsIgnoreCase(name))
-                return a;
+    public static Adventurer getAdventurerByUUID(UUID id) {
+        for (Adventurer obj : adventurers.values()) {
+            if (obj.getUuid() == id) {
+                return obj;
+            }
+        }
         return null;
     }
-
-
 }

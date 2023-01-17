@@ -28,19 +28,13 @@ public final class onPlayerJoin implements Listener {
 
         Attributes at = new Attributes();
 
-        at.setDmg(1);
+        at.setAtk(1);
         at.setDef(1);
         at.setLife(1);
 
-        new Adventurer(event.getPlayer(), at);
+        Adventurer adv = new Adventurer(event.getPlayer(), at);
 
-        Adventurer b =  Adventurer.getAdventurer(event.getPlayer().getName());
-
-        event.getPlayer().setHealthScale(b.getAttributes().getLife());
-
-        System.out.println(b.getName());
-        System.out.println(b.getAttributes().getLife());
-
+        event.getPlayer().setHealthScale(adv.getAttributes().getLife());
 
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
@@ -56,11 +50,11 @@ public final class onPlayerJoin implements Listener {
             ));
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
-                    '&', "&6&lVocê voltou!" + "&f&l "+player.getDisplayName())
+                    '&', "&6&lVocê voltou!" + "&f&l " + player.getDisplayName())
             ));
         }
-        System.out.println("teste1");
     }
+
     public void setInventory(Player player) {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta meta = item.getItemMeta();
