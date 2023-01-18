@@ -10,7 +10,6 @@ public class MySQL {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM test");
             while (rs.next()) {
-                // process the result set
                 System.out.println(rs.getString("id"));
             }
             con.close();

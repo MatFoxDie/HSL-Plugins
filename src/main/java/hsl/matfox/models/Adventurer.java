@@ -1,10 +1,12 @@
 package hsl.matfox.models;
 
+import jakarta.persistence.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 
 import java.util.HashMap;
 import java.util.UUID;
-
+@Entity
 public class Adventurer {
     private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
 
