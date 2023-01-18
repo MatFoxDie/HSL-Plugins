@@ -11,6 +11,18 @@ public class Attributes {
     private int Luk;
     private int Agi;
 
+    public Attributes(int atk, int def, int life, int SP, int anInt, int res, int dex, int luk, int agi) {
+        Atk = atk;
+        Def = def;
+        Life = life;
+        this.SP = SP;
+        Int = anInt;
+        Res = res;
+        Dex = dex;
+        Luk = luk;
+        Agi = agi;
+    }
+
     public int getAtk() {
         return Atk;
     }
@@ -81,5 +93,9 @@ public class Attributes {
 
     public void setAgi(int agi) {
         Agi = agi;
+    }
+    public static Attributes newPlayerAttributes(){
+        Attributes a = new Attributes(5,5,20,5,5,5,5,5,5);
+        return a;
     }
 }
