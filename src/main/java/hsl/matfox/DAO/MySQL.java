@@ -17,7 +17,7 @@ public class MySQL {
         Connection con = createConnectionToMySQL();
 
         if(con!=null) {
-            System.out.println(ChatColor.translateAlternateColorCodes('&',"&f&l[DATABASE] &a&lConexão com o banco realizada com sucesso!"));
+            System.out.println(ChatColor.translateAlternateColorCodes('&',"&f&l[DATABASE] &a&lConexão com o banco realizada com sucesso."));
             con.close();
         }
     }
