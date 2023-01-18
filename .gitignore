@@ -112,4 +112,4 @@ buildNumber.properties
 # Common working directory
 run/
 
-./src/main/java/DAO/MySQL.java
+src/main/java/hsl/matfox/DAO/MySQL.java
