@@ -1,4 +1,5 @@
 package hsl.matfox.events;
+import hsl.matfox.DAO.MySQL;
 import hsl.matfox.controllers.playerController;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -26,6 +27,8 @@ public final class onPlayerJoin implements Listener {
 
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
+
+        MySQL.Connection();
 
         player.teleport(spawnLocation);
 
