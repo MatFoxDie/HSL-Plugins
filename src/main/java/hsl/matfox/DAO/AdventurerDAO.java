@@ -3,10 +3,7 @@ package hsl.matfox.DAO;
 import hsl.matfox.models.Adventurer;
 import org.bukkit.entity.Player;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class AdventurerDAO {
     public void save(Player player) {
@@ -15,7 +12,8 @@ public class AdventurerDAO {
         String name = a.getName();
         String displayName = a.getDisplayName();
         String permission = a.getPermissions();
-        String query = "{ CALL ss_sp_adventurer_register(?,?,?,?,?)}";
+        //String query = "{ CALL ss_sp_adventurer_register(?,?,?,?,?)}";
+        String query = "CALL ss_sp_adventurer_register(?,?,?,?,1,?);";
         Connection conn = null;
         PreparedStatement pstm = null;
         try{
@@ -25,8 +23,10 @@ public class AdventurerDAO {
             stmt.setString(2, name);
             stmt.setString(3, displayName);
             stmt.setString(4, permission);
-            stmt.setInt(5, 1);
+            stmt.registerOutParameter(5, Types.INTEGER);
             stmt.executeQuery();
+            int res = stmt.getInt(5);
+            System.out.println(res);
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
