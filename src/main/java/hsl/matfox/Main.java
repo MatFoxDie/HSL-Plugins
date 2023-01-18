@@ -3,12 +3,7 @@ package hsl.matfox;
 import hsl.matfox.commands.hslReloadCommand;
 import hsl.matfox.events.*;
 import hsl.matfox.utils.ConfigurationManager;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
-import java.util.List;
 
 public final class Main extends JavaPlugin {
 

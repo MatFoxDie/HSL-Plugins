@@ -3,6 +3,7 @@ package hsl.matfox.utils;
 import hsl.matfox.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -44,5 +45,9 @@ public class ConfigurationManager {
                 Bukkit.getServer().getLogger().severe(ChatColor.RED + "Could not create status.yml!");
             }
         }
+    }
+    public Configuration loadConfig() {
+        Configuration config = plugin.getConfig();
+        return config;
     }
 }
