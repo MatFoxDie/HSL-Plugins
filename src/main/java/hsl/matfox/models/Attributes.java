@@ -1,6 +1,8 @@
 package hsl.matfox.models;
 
 public class Attributes {
+    public static final Attributes basicPlayer = new Attributes(5,5,10,5,5,5,5,5,5);
+
     private int Atk;
     private int Def;
     private int Life;
@@ -93,9 +95,5 @@ public class Attributes {
 
     public void setAgi(int agi) {
         Agi = agi;
-    }
-    public static Attributes newPlayerAttributes(){
-        Attributes a = new Attributes(5,5,20,5,5,5,5,5,5);
-        return a;
     }
 }

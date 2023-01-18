@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 public class playerController {
     public static void newPlayer(Player p){
-        new Adventurer(p, Attributes.newPlayerAttributes());
+        new Adventurer(p, Attributes.basicPlayer);
         System.out.println("Novo player criado nos registros");
     }
     public static void playerSetLife(Player p){

@@ -34,7 +34,7 @@ public final class onInventoryClick implements Listener {
     public void onPlayerInteract(PlayerInteractEvent e) throws InterruptedException {
         Action a = e.getAction();
         Player p = e.getPlayer();
-        if ((a == Action.PHYSICAL) || (e.getItem() == null) || (e.getItem().getType() == Material.STICK)) return;
+        if ((a == Action.PHYSICAL) || (e.getItem() == null) || !(e.getItem().getType() == Material.GRAY_DYE || e.getItem().getType() == Material.LIME_DYE)) return;
         else {
         long currentTime = System.currentTimeMillis();
             if (currentTime > lastExecution + delay * 1000 || p.isOp()) {
