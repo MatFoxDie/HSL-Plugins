@@ -28,7 +28,6 @@ public final class onPlayerJoin implements Listener {
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
 
-        MySQL.Connection();
 
         player.teleport(spawnLocation);
 
