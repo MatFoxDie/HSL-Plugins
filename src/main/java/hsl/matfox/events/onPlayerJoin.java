@@ -1,5 +1,5 @@
 package hsl.matfox.events;
-
+import hsl.matfox.controllers.playerController;
 import hsl.matfox.models.Adventurer;
 import hsl.matfox.models.Attributes;
 import net.md_5.bungee.api.ChatMessageType;
@@ -26,15 +26,7 @@ public final class onPlayerJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
 
-        Attributes at = new Attributes();
-
-        at.setAtk(1);
-        at.setDef(1);
-        at.setLife(1);
-
-        Adventurer adv = new Adventurer(event.getPlayer(), at);
-
-        event.getPlayer().setHealthScale(adv.getAttributes().getLife());
+        playerController.newPlayer(event.getPlayer());
 
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
@@ -74,7 +66,6 @@ public final class onPlayerJoin implements Listener {
         player.getInventory().setItem(7, showPlayers);
 
     }
-
     public void HSL(Player player) {
 
         Inventory inventory = player.getInventory();
