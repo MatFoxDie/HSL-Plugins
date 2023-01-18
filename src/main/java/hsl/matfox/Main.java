@@ -28,9 +28,6 @@ public final class Main extends JavaPlugin {
 
         //commands
         this.getCommand("hslReload").setExecutor(new hslReloadCommand());
-
-
-
     }
 
     @Override

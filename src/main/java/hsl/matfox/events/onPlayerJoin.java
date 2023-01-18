@@ -1,7 +1,5 @@
 package hsl.matfox.events;
 import hsl.matfox.controllers.playerController;
-import hsl.matfox.models.Adventurer;
-import hsl.matfox.models.Attributes;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -26,8 +24,6 @@ public final class onPlayerJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
 
-        playerController.newPlayer(event.getPlayer());
-
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
 
@@ -40,6 +36,11 @@ public final class onPlayerJoin implements Listener {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
                     '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())
             ));
+
+            // Criando e Settando vida de um NOVO jogador
+            playerController.newPlayer(event.getPlayer());
+            playerController.playerSetLife(event.getPlayer());
+
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
                     '&', "&6&lVocê voltou!" + "&f&l " + player.getDisplayName())
