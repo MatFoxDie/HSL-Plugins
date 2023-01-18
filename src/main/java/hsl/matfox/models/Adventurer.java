@@ -10,8 +10,10 @@ import java.util.UUID;
 public class Adventurer {
     private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
 
-    private String name;
     private UUID uuid;
+    private String name;
+    private String displayName;
+    private String permissions;
     private Attributes attributes;
 
     public Adventurer() {
@@ -19,7 +21,9 @@ public class Adventurer {
 
     public Adventurer(Player player, Attributes attributes) {
         this.name = player.getName();
+        this.displayName = player.getDisplayName();
         this.uuid = player.getUniqueId();
+        this.permissions = "Jogador";
         this.attributes =  attributes;
         adventurers.put(uuid, this);
     }
@@ -49,4 +53,12 @@ public class Adventurer {
         }
         return null;
     }
+
+    public String getDisplayName() { return displayName; }
+
+    public void setDisplayName(String displayName) { this.displayName = displayName; }
+
+    public String getPermissions() { return permissions; }
+
+    public void setPermissions(String permissions) { this.permissions = permissions; }
 }

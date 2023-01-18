@@ -5,3 +5,6 @@ spawn-location:
   z: 0
 
 database-conection:
+  URL: ''
+  USER: ''
+  PASS: ''

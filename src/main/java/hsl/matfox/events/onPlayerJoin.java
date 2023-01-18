@@ -1,4 +1,5 @@
 package hsl.matfox.events;
+import hsl.matfox.DAO.AdventurerDAO;
 import hsl.matfox.DAO.MySQL;
 import hsl.matfox.controllers.playerController;
 import net.md_5.bungee.api.ChatMessageType;
@@ -34,14 +35,22 @@ public final class onPlayerJoin implements Listener {
         setInventory(player);
         HSL(player);
 
+        playerController.newPlayer(event.getPlayer());
+        playerController.playerSetLife(event.getPlayer());
+
+        AdventurerDAO adventurerDAO = new AdventurerDAO();
+        adventurerDAO.save(player);
+
         if(!player.hasPlayedBefore()){
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
                     '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())
             ));
 
             // Criando e Settando vida de um NOVO jogador
-            playerController.newPlayer(event.getPlayer());
-            playerController.playerSetLife(event.getPlayer());
+
+
+            //SALVANDO DB
+
 
         } else {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
