@@ -34,12 +34,14 @@ public final class onPlayerJoin implements Listener {
         setInventory(player);
         HSL(player);
 
+        playerController.newPlayer(event.getPlayer());
+        playerController.playerSetLife(event.getPlayer());
+
         AdventurerDAO adventurerDAO = new AdventurerDAO();
         int result = adventurerDAO.NewPlayer(player);
 
         if(result == 400){
-            playerController.newPlayer(event.getPlayer());
-            playerController.playerSetLife(event.getPlayer());
+
         }
 
         if(!player.hasPlayedBefore()){
