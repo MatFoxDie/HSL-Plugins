@@ -24,7 +24,7 @@ public class AdventurerDAO {
         try{
 
             conn = MySQL.createConnectionToMySQL();
-            System.out.println("test");
+            System.out.println("test4");
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setString(1, uuid);
             stmt.setString(2, name);
@@ -34,7 +34,11 @@ public class AdventurerDAO {
             stmt.executeQuery();
             res = stmt.getInt(5);
 
+            System.out.println("teste2");
+
+            NewPlayerAttributes(res);
         } catch (Exception e) {
+            System.out.println(e.toString());
             throw new RuntimeException(e);
         } finally {
             try {
@@ -55,8 +59,8 @@ public class AdventurerDAO {
         String query = "CALL ss_sp_attributes_register(?,?,?,?,?,?,?,?,?,?);";
         Connection conn = null;
         PreparedStatement pstm = null;
-        int res = 0;
         try{
+            System.out.println(playerId);
             conn = MySQL.createConnectionToMySQL();
             CallableStatement stmt = conn.prepareCall(query);
             stmt.setInt(1, Attributes.basicPlayer.getAtk());
