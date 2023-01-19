@@ -29,27 +29,24 @@ public final class onPlayerJoin implements Listener {
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
 
-
         player.teleport(spawnLocation);
 
         setInventory(player);
         HSL(player);
 
-        playerController.newPlayer(event.getPlayer());
-        playerController.playerSetLife(event.getPlayer());
-
         AdventurerDAO adventurerDAO = new AdventurerDAO();
-        adventurerDAO.save(player);
+        int result = adventurerDAO.NewPlayer(player);
+
+        if(result == 400){
+            playerController.newPlayer(event.getPlayer());
+            playerController.playerSetLife(event.getPlayer());
+        }
 
         if(!player.hasPlayedBefore()){
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
-                    '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())
-            ));
+                    '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())));
 
             // Criando e Settando vida de um NOVO jogador
-
-
-            //SALVANDO DB
 
 
         } else {
