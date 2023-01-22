@@ -1,5 +1,7 @@
 package hsl.matfox.events;
-import hsl.matfox.configuration.MySQL;
+
+import hsl.matfox.Main;
+import hsl.matfox.controllers.PlayerController;
 import hsl.matfox.models.Adventurer;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -12,19 +14,17 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
-import hsl.matfox.Main;
-import org.bukkit.plugin.Plugin;
 
 
 public final class onPlayerJoin implements Listener {
     Plugin plugin = Main.getPlugin(Main.class);
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
-
+    public void onJoin(PlayerJoinEvent event) {
         Location spawnLocation = loadSpawn();
         Player player = event.getPlayer();
 
@@ -33,15 +33,12 @@ public final class onPlayerJoin implements Listener {
         setInventory(player);
         HSL(player);
 
-        Adventurer aventureiro = new Adventurer(player);
+        PlayerController playerController = new PlayerController();
+        playerController.newPlayer(player);
 
-
-        MySQL.getInstance().getSession().insert("hsl.matfox.DAO.AdventurerDAO.insertAdventurer", aventureiro);
-
-
-        if(!player.hasPlayedBefore()){
+        if (!player.hasPlayedBefore()) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes(
-                    '&', "&6&lBem vindo!" + "&f&l "+player.getDisplayName())));
+                    '&', "&6&lBem vindo!" + "&f&l " + player.getDisplayName())));
 
             // Criando e Settando vida de um NOVO jogador
 
@@ -72,6 +69,7 @@ public final class onPlayerJoin implements Listener {
         player.getInventory().setItem(7, showPlayers);
 
     }
+
     public void HSL(Player player) {
 
         Inventory inventory = player.getInventory();
@@ -96,6 +94,7 @@ public final class onPlayerJoin implements Listener {
         inventory.setItem(31, pinkglass);
         inventory.setItem(32, pinkglass);
     }
+
     public Location loadSpawn() {
         Configuration config = plugin.getConfig();
         String worldName = config.getString("spawn-location.world");

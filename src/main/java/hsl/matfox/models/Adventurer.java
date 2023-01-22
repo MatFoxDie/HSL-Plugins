@@ -1,69 +1,46 @@
 package hsl.matfox.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 
+import java.util.Date;
 import java.util.HashMap;
-import java.util.UUID;
 
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Adventurer {
-    private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
-
+    private static final HashMap<String, Adventurer> adventurers = new HashMap<>();
     private Integer id;
-    private UUID uuid;
-    private String name;
-    private String displayName;
-    private  String password;
-    private String permissions;
+    private String uuid;
+    private String nick;
+    private String password;
+    private String displayNick;
+    private String permission;
+    private Date createdAt;
     private Attributes attributes;
 
-    public Adventurer() {
-    }
 
     public Adventurer(Player player) {
-        this.name = player.getName();
-        this.displayName = player.getDisplayName();
-        this.uuid = player.getUniqueId();
-        this.permissions = "Jogador";
+        setNick(player.getName());
+        setDisplayNick(player.getDisplayName());
+        setUuid(player.getUniqueId().toString());
+        setPassword("teste");
+        setPermission("Player");
         adventurers.put(uuid, this);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public Attributes getAttributes() {
-        return attributes;
-    }
-
-    public static Adventurer getAdventurerByUUID(UUID id) {
+    public static Adventurer getAdventurerByUUID(String id) {
         for (Adventurer obj : adventurers.values()) {
-            if (obj.getUuid() == id) {
+            if (obj.getUuid().equals(id)) {
                 return obj;
             }
         }
         return null;
-    }
-
-    public String getDisplayName() { return displayName; }
-
-    public void setDisplayName(String displayName) { this.displayName = displayName; }
-
-    public String getPermissions() { return permissions; }
-
-    public void setPermissions(String permissions) { this.permissions = permissions; }
-
-
-
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

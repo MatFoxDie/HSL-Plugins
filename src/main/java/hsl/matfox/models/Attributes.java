@@ -1,29 +1,31 @@
 package hsl.matfox.models;
 
 public class Attributes {
-    public static final Attributes basicPlayer = new Attributes(5,5,10,5,5,5,5,5,5, 0);
-    private int idAdventurer;
-    private int Atk;
-    private int Def;
-    private int Life;
-    private int SP;
-    private int Int;
-    private int Res;
-    private int Dex;
-    private int Luk;
-    private int Agi;
+    private Integer atk;
+    private Integer def;
+    private Integer life;
+    private Integer SP;
+    private Integer anInt;
+    private Integer res;
+    private Integer dex;
+    private Integer luk;
+    private Integer Agi;
+    private Integer idAdventurer;
 
-    public Attributes(int atk, int def, int life, int SP, int anInt, int res, int dex, int luk, int agi, int IdAdventurer) {
-        Atk = atk;
-        Def = def;
-        Life = life;
-        this.SP = SP;
-        Int = anInt;
-        Res = res;
-        Dex = dex;
-        Luk = luk;
-        Agi = agi;
-        idAdventurer = IdAdventurer;
+
+    public static final Attributes basicPlayer = new Attributes(5, 5, 10, 5, 5, 5, 5, 5, 5, 0);
+
+    public Attributes(int atk, int def, int life, int sp, int anInt, int res, int dex, int luk, int agi, int IdAdventurer) {
+        setAtk(atk);
+        setDef(def);
+        setLife(life);
+        setSP(sp);
+        setAnInt(anInt);
+        setRes(res);
+        setDex(dex);
+        setLuk(luk);
+        setAgi(agi);
+        setIdAdventurer(IdAdventurer);
     }
 
     public int getAtk() {
