@@ -7,9 +7,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
-
     @Override
     public void onEnable() {
+        System.out.println("PLUGIN HABILITADO COM SUCESSO!");
         //loadConfig
         ConfigurationManager.getInstance();
         this.saveDefaultConfig();
@@ -24,9 +24,9 @@ public final class Main extends JavaPlugin {
         //commands
         this.getCommand("hslReload").setExecutor(new hslReloadCommand());
     }
-
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        System.out.println("PLUGIN DESABILITADO COM SUCESSO!");
     }
 }

@@ -10,10 +10,13 @@ import java.sql.*;
 public class AdventurerDAO {
     public int NewPlayer(Player player) {
 
-        String uuid = player.getUniqueId().toString();
-        String name = player.getName().toString();
-        String displayName = player.getDisplayName().toString();
-        String permission = "Jogador";
+        Adventurer a = Adventurer.getAdventurerByPlayer(player);
+        String uuid = a.getUuid().toString();
+        String name = a.getName();
+        String displayName = a.getDisplayName();
+        String permission = a.getPermissions();
+        System.out.println("test");
+        //String query = "{ CALL ss_sp_adventurer_register(?,?,?,?,?)}";
         String query = "CALL ss_sp_adventurer_register(?,?,?,?,?);";
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -30,6 +33,8 @@ public class AdventurerDAO {
             stmt.registerOutParameter(5, Types.INTEGER);
             stmt.executeQuery();
             res = stmt.getInt(5);
+
+            System.out.println("teste2");
 
             NewPlayerAttributes(res);
         } catch (Exception e) {
