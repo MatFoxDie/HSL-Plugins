@@ -2,13 +2,21 @@ package hsl.matfox.DAO;
 
 import hsl.matfox.models.Adventurer;
 import hsl.matfox.models.Attributes;
+import hsl.matfox.utils.JbcryptHSL;
 import org.bukkit.entity.Player;
 
 import javax.print.attribute.Attribute;
 import java.sql.*;
 
 public class AdventurerDAO {
+    public void Funcao(String x, Boolean y) {
+
+    }
     public int NewPlayer(Player player) {
+
+        String hashPw1 = JbcryptHSL.hash("Example");
+
+        Boolean teste = JbcryptHSL.verifyAndUpdateHash("password", hashPw1);
 
         Adventurer a = Adventurer.getAdventurerByPlayer(player);
         String uuid = a.getUuid().toString();

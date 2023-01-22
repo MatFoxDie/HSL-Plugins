@@ -11,8 +11,8 @@ public class JbcryptHSL {
         return bcrypt.hash(password);
     }
 
-    public static boolean verifyAndUpdateHash(String password, String hash, Function<String, Boolean> updateFunc) {
-        return bcrypt.verifyAndUpdateHash(password, hash, updateFunc);
+    public static boolean verifyAndUpdateHash(String password, String hash) {
+        return bcrypt.verifyAndUpdateHash(password, hash);
     }
 }
 
