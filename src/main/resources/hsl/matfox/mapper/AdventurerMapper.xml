@@ -5,6 +5,9 @@
 <mapper namespace="AdventurerMapper">
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="hsl.matfox.models.Adventurer">
         insert into adventurer (uuid, nick, password, displayNick, permission)
-        values (#{uuid}, #{nick}, #{password},#{displayNick}, #{permission})+
+        values (#{uuid}, #{nick}, #{password},#{displayNick}, #{permission})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 </mapper>
