@@ -1,29 +1,29 @@
 package hsl.matfox.models;
 
-import jakarta.persistence.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.UUID;
-@Entity
+
 public class Adventurer {
     private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
+
+    private Integer id;
     private UUID uuid;
     private String name;
     private String displayName;
+    private  String password;
     private String permissions;
     private Attributes attributes;
 
     public Adventurer() {
     }
 
-    public Adventurer(Player player, Attributes attributes, int idAdventurer) {
+    public Adventurer(Player player) {
         this.name = player.getName();
         this.displayName = player.getDisplayName();
         this.uuid = player.getUniqueId();
         this.permissions = "Jogador";
-        this.attributes =  attributes;
-        attributes.setIdAdventurer(idAdventurer);
         adventurers.put(uuid, this);
     }
 
@@ -37,11 +37,6 @@ public class Adventurer {
 
     public Attributes getAttributes() {
         return attributes;
-    }
-
-    public static Adventurer getAdventurerByPlayer(Player p) {
-        Adventurer a = adventurers.get(p.getUniqueId());
-        return a != null ? a : new Adventurer(p, a.attributes, a.attributes.getIdAdventurer());
     }
 
     public static Adventurer getAdventurerByUUID(UUID id) {
@@ -61,4 +56,14 @@ public class Adventurer {
 
     public void setPermissions(String permissions) { this.permissions = permissions; }
 
+
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -1,7 +1,6 @@
 package hsl.matfox.events;
-import hsl.matfox.DAO.AdventurerDAO;
-import hsl.matfox.DAO.MySQL;
-import hsl.matfox.controllers.playerController;
+import hsl.matfox.configuration.MySQL;
+import hsl.matfox.models.Adventurer;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -34,13 +33,10 @@ public final class onPlayerJoin implements Listener {
         setInventory(player);
         HSL(player);
 
+        Adventurer aventureiro = new Adventurer(player);
 
 
-        AdventurerDAO adventurerDAO = new AdventurerDAO();
-        int idAdventurer = adventurerDAO.NewPlayer(player);
-
-        playerController.newPlayer(event.getPlayer(), idAdventurer);
-        playerController.playerSetLife(event.getPlayer());
+        MySQL.getInstance().getSession().insert("hsl.matfox.DAO.AdventurerDAO.insertAdventurer", aventureiro);
 
 
         if(!player.hasPlayedBefore()){
