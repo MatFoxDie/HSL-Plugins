@@ -8,7 +8,6 @@ import java.util.UUID;
 @Entity
 public class Adventurer {
     private static final HashMap<UUID, Adventurer> adventurers = new HashMap<UUID, Adventurer>();
-
     private UUID uuid;
     private String name;
     private String displayName;
@@ -18,12 +17,13 @@ public class Adventurer {
     public Adventurer() {
     }
 
-    public Adventurer(Player player, Attributes attributes) {
+    public Adventurer(Player player, Attributes attributes, int idAdventurer) {
         this.name = player.getName();
         this.displayName = player.getDisplayName();
         this.uuid = player.getUniqueId();
         this.permissions = "Jogador";
         this.attributes =  attributes;
+        attributes.setIdAdventurer(idAdventurer);
         adventurers.put(uuid, this);
     }
 
@@ -41,7 +41,7 @@ public class Adventurer {
 
     public static Adventurer getAdventurerByPlayer(Player p) {
         Adventurer a = adventurers.get(p.getUniqueId());
-        return a != null ? a : new Adventurer(p, a.attributes);
+        return a != null ? a : new Adventurer(p, a.attributes, a.attributes.getIdAdventurer());
     }
 
     public static Adventurer getAdventurerByUUID(UUID id) {
@@ -60,4 +60,5 @@ public class Adventurer {
     public String getPermissions() { return permissions; }
 
     public void setPermissions(String permissions) { this.permissions = permissions; }
+
 }

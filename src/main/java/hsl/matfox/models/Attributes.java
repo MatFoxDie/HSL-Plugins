@@ -1,8 +1,8 @@
 package hsl.matfox.models;
 
 public class Attributes {
-    public static final Attributes basicPlayer = new Attributes(5,5,10,5,5,5,5,5,5);
-
+    public static final Attributes basicPlayer = new Attributes(5,5,10,5,5,5,5,5,5, 0);
+    private int idAdventurer;
     private int Atk;
     private int Def;
     private int Life;
@@ -13,7 +13,7 @@ public class Attributes {
     private int Luk;
     private int Agi;
 
-    public Attributes(int atk, int def, int life, int SP, int anInt, int res, int dex, int luk, int agi) {
+    public Attributes(int atk, int def, int life, int SP, int anInt, int res, int dex, int luk, int agi, int IdAdventurer) {
         Atk = atk;
         Def = def;
         Life = life;
@@ -23,6 +23,7 @@ public class Attributes {
         Dex = dex;
         Luk = luk;
         Agi = agi;
+        idAdventurer = IdAdventurer;
     }
 
     public int getAtk() {
@@ -95,5 +96,13 @@ public class Attributes {
 
     public void setAgi(int agi) {
         Agi = agi;
+    }
+
+    public int getIdAdventurer() {
+        return idAdventurer;
+    }
+
+    public void setIdAdventurer(int idAdventurer) {
+        this.idAdventurer = idAdventurer;
     }
 }
