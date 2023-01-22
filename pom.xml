@@ -35,6 +35,8 @@
                 <version>3.4.2</version>
 
                 <configuration>
+                    <outputDirectory>C:\Desenvolvimento\Projetos\MatFoxDie\HSL-Plugins\server\plugins</outputDirectory>
+                    <finalName>HSC</finalName>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>

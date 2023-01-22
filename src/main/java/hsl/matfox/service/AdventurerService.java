@@ -1,4 +1,4 @@
-package service;
+package hsl.matfox.service;
 
 import hsl.matfox.config.Database;
 import hsl.matfox.models.Adventurer;

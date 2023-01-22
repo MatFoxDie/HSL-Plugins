@@ -2,7 +2,7 @@ package hsl.matfox.controllers;
 
 import hsl.matfox.models.Adventurer;
 import org.bukkit.entity.Player;
-import service.AdventurerService;
+import hsl.matfox.service.AdventurerService;
 
 import java.io.IOException;
 
